@@ -12,3 +12,14 @@
 .OrderBook .tables {
   display: flex;
 }
+
+.Config {
+  display: flex;
+  align-items: center;
+  margin: 14px 0px;
+}
+
+.Config p {
+  margin-right: 12px;
+  display: block;
+}

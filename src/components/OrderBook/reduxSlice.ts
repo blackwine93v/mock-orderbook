@@ -49,9 +49,14 @@ export const orderBookSlice = createSlice({
         }
       }
     },
+    changePrecLevel: (state, action: PayloadAction<PREC_LEVEL>) => {
+      state.precLevel = action.payload;
+      state.book.asks = {};
+      state.book.bids = {};
+    }
   },
 });
 
-export const { receivePriceLevel } = orderBookSlice.actions;
+export const { receivePriceLevel, changePrecLevel } = orderBookSlice.actions;
 
 export default orderBookSlice.reducer;
