@@ -1,7 +1,7 @@
 import { createSlice, createAction, PayloadAction } from "@reduxjs/toolkit";
 import { PREC_LEVEL } from "../../hooks/useBookSocket";
 
-type PriceLevel = {
+export type PriceLevel = {
   price: number;
   count: number;
   amount: number;
@@ -40,6 +40,13 @@ export const orderBookSlice = createSlice({
         }
       } else {
         // delete this price level
+        if (amount === 1) {
+          // bids
+          delete state.book.bids[price];
+        } else if (amount === -1) {
+          // asks
+          delete state.book.asks[price];
+        }
       }
     },
   },

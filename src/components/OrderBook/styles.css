@@ -1,0 +1,14 @@
+.OrderBook {
+  display: flex;
+  flex-direction: column;
+}
+
+.OrderBook .socket-status {
+  font-size: 14px;
+  margin: 20px;
+  display: block;
+}
+ 
+.OrderBook .tables {
+  display: flex;
+}

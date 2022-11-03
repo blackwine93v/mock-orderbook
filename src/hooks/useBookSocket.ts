@@ -14,9 +14,11 @@ export enum CHANNEL {
 export type PREC_LEVEL = 0 | 1 | 2 | 3 | 4;
 
 const SYMBOL = "tBTCUSD";
-const DEFAULT_PREC_LEVEL: PREC_LEVEL = 4;
+const DEFAULT_PREC_LEVEL: PREC_LEVEL = 0;
 
 function useBookSocket(onData: (data: number[]) => void) {
+  const [isConnected, setIsConnected] = React.useState(false);
+
   React.useEffect(() => {
     const socket = new WebSocket("wss://api-pub.bitfinex.com/ws/2");
     let chanId: number;
@@ -33,6 +35,7 @@ function useBookSocket(onData: (data: number[]) => void) {
     // Connection opened
     socket.addEventListener("open", () => {
       socket.send(msg);
+      setIsConnected(true);
     });
 
     // Listen for messages
@@ -64,6 +67,8 @@ function useBookSocket(onData: (data: number[]) => void) {
       }
     });
   }, [onData]);
+
+  return { isConnected: true };
 }
 
 export default useBookSocket;
